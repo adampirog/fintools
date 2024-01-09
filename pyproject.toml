@@ -1,0 +1,48 @@
+[project]
+name = "fintools"
+authors = [
+    {name = "Adam Pirog"},
+    {email = "pirog.adam@gmail.com"},
+]
+description = "Manage your finances!"
+readme = "README.md"
+license = { text="MIT" }
+dynamic = ["version"]
+requires-python = ">=3.11"
+dependencies = [
+
+    ]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "isort",
+    "black",
+    "pylint"
+    ]
+
+[build-system]
+requires = ["setuptools>=60.0.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["fintools*"]
+
+[tool.setuptools.dynamic]
+version = {attr = "fintools.version.__version__"}
+[project.scripts]
+fintools = "fintools.__main__:cli"
+
+[tool.black]
+line-length = 79
+target-version = ["py311"]
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra"
+testpaths = ["tests"]
+
+[tool.isort]
+profile = "black"
+line_length = 79
+lines_after_imports = 2
